@@ -1,0 +1,13 @@
+name: GlowingParadise-Vorbau
+version: '1.0'
+main: aut.philippzinhobl.Main
+description: GlowingParadise Vorbau plugin
+api-version: '1.21.11'
+dependencies:
+  server:
+    floodgate:
+      load: BEFORE
+      required: false
+    Geyser-Spigot:
+      load: BEFORE
+      required: false
