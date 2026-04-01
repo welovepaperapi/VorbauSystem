@@ -36,11 +36,9 @@ public class MenuListener implements Listener {
 
         boolean isOurMenu = title.equals("Vorbau-System")
                 || title.equals("Bewerbung einreichen")
-                || title.equals("Bauwelt waehlen")
                 || title.equals("Bauwelt wählen")
                 || title.equals("Offene Bewerbungen")
                 || title.equals("Fertige Bauwerke")
-                || title.startsWith("Welt-Typ waehlen")
                 || title.startsWith("Welt-Typ wählen")
                 || title.startsWith("Bewerbung: ");
 
@@ -61,11 +59,11 @@ public class MenuListener implements Listener {
 
         if (title.equals("Vorbau-System")) {
             handleMainMenu(player, slot, clicked, item);
-        } else if (title.startsWith("Welt-Typ waehlen") || title.startsWith("Welt-Typ wählen")) {
+        } else if (title.startsWith("Welt-Typ wählen")) {
             handleTypeSelection(player, title, clicked);
         } else if (title.equals("Bewerbung einreichen")) {
             handleApplyMenu(player, slot, clicked);
-        } else if (title.equals("Bauwelt waehlen") || title.equals("Bauwelt wählen")) {
+        } else if (title.equals("Bauwelt wählen")) {
             handleWorldSelection(player, item);
         } else if (title.equals("Offene Bewerbungen")) {
             handleModList(player, item, event);

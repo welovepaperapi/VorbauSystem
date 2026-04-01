@@ -25,11 +25,11 @@ import java.util.logging.Level;
 public class ApplyManager {
     private final Main plugin;
     public final HashMap<UUID, ApplicationDraft> drafts = new HashMap<>();
-    private static final String COLOR_YELLOW = "\u00A7e";
-    private static final String COLOR_GRAY = "\u00A77";
-    private static final String COLOR_WHITE = "\u00A7f";
-    private static final String COLOR_DARK_GRAY = "\u00A78";
-    private static final String COLOR_GREEN_BOLD = "\u00A7a\u00A7l";
+    private static final String COLOR_YELLOW = "§e";
+    private static final String COLOR_GRAY = "§7";
+    private static final String COLOR_WHITE = "§f";
+    private static final String COLOR_DARK_GRAY = "§8";
+    private static final String COLOR_GREEN_BOLD = "§a§l";
 
     public ApplyManager(Main plugin) {
         this.plugin = plugin;
@@ -45,8 +45,8 @@ public class ApplyManager {
 
         inv.setItem(10, createItem(
                 draft.worldName == null ? Material.RED_WOOL : Material.GREEN_WOOL,
-                COLOR_YELLOW + "Bauwelt auswaehlen",
-                COLOR_GRAY + "Aktuell: " + COLOR_WHITE + (draft.worldName == null ? "Nicht gewaehlt" : draft.worldName)
+                COLOR_YELLOW + "Bauwelt auswählen",
+                COLOR_GRAY + "Aktuell: " + COLOR_WHITE + (draft.worldName == null ? "Nicht gewählt" : draft.worldName)
         ));
         inv.setItem(12, createItem(
                 draft.discord == null ? Material.RED_WOOL : Material.GREEN_WOOL,
@@ -55,7 +55,7 @@ public class ApplyManager {
         ));
         inv.setItem(14, createItem(
                 Material.PAPER,
-                COLOR_YELLOW + "Persoenliche Infos",
+                COLOR_YELLOW + "Persönliche Infos",
                 COLOR_GRAY + "Name: " + COLOR_WHITE + draft.name,
                 COLOR_GRAY + "Alter: " + COLOR_WHITE + (draft.age == 0 ? "Nicht gesetzt" : draft.age)
         ));
@@ -65,14 +65,14 @@ public class ApplyManager {
         inv.setItem(22, createItem(
                 ready ? Material.EMERALD_BLOCK : Material.BARRIER,
                 COLOR_GREEN_BOLD + "Bewerbung absenden",
-                COLOR_GRAY + "Alle Pflichtfelder muessen gruen sein!"
+                COLOR_GRAY + "Alle Pflichtfelder müssen grün sein!"
         ));
 
         player.openInventory(inv);
     }
 
     public void openWorldSelectionMenu(Player player) {
-        Inventory inv = Bukkit.createInventory(null, 9 * 3, Component.text("Bauwelt waehlen", NamedTextColor.GOLD));
+        Inventory inv = Bukkit.createInventory(null, 9 * 3, Component.text("Bauwelt wählen", NamedTextColor.GOLD));
         for (int i = 0; i < 27; i++) {
             inv.setItem(i, createItem(Material.GRAY_STAINED_GLASS_PANE, " "));
         }
@@ -88,8 +88,8 @@ public class ApplyManager {
 
                 inv.setItem(invSlot, createItem(
                         Material.PLAYER_HEAD,
-                        "\u00A76Welt #" + slot,
-                        COLOR_GRAY + "Klicke zum Auswaehlen",
+                        "§6Welt #" + slot,
+                        COLOR_GRAY + "Klicke zum Auswählen",
                         COLOR_DARK_GRAY + "ID: " + worldName
                 ));
             }
@@ -189,7 +189,7 @@ public class ApplyManager {
         try {
             parsedUuid = UUID.fromString(targetUUID);
         } catch (IllegalArgumentException ex) {
-            moderator.sendMessage(Main.PREFIX_COMP.append(Component.text("Ungueltige Bewerbungs-ID.", NamedTextColor.RED)));
+            moderator.sendMessage(Main.PREFIX_COMP.append(Component.text("Ungültige Bewerbungs-ID.", NamedTextColor.RED)));
             return;
         }
 
@@ -208,8 +208,8 @@ public class ApplyManager {
                 COLOR_GRAY + "UUID: " + COLOR_DARK_GRAY + targetUUID
         ));
         inv.setItem(11, createItem(Material.EMERALD_BLOCK, COLOR_GREEN_BOLD + "ANNEHMEN"));
-        inv.setItem(13, createItem(Material.ENDER_PEARL, "\u00A7b\u00A7lBESICHTIGEN"));
-        inv.setItem(15, createItem(Material.REDSTONE_BLOCK, "\u00A7c\u00A7lABLEHNEN"));
+        inv.setItem(13, createItem(Material.ENDER_PEARL, "§b§lBESICHTIGEN"));
+        inv.setItem(15, createItem(Material.REDSTONE_BLOCK, "§c§lABLEHNEN"));
 
         moderator.openInventory(inv);
     }
@@ -217,7 +217,7 @@ public class ApplyManager {
     public void submitApplication(Player player) {
         ApplicationDraft draft = drafts.get(player.getUniqueId());
         if (draft == null || draft.worldName == null || draft.discord == null || draft.age == 0) {
-            player.sendMessage(Main.PREFIX_COMP.append(Component.text("Bitte alle Pflichtfelder ausfuellen!", NamedTextColor.RED)));
+            player.sendMessage(Main.PREFIX_COMP.append(Component.text("Bitte alle Pflichtfelder ausfüllen!", NamedTextColor.RED)));
             return;
         }
         try (PreparedStatement ps = plugin.getDbManager().getConnection().prepareStatement(

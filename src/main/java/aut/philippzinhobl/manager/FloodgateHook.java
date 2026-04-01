@@ -66,7 +66,7 @@ public class FloodgateHook {
                 Method isFloodgatePlayer = api.getClass().getMethod("isFloodgatePlayer", UUID.class);
                 return (boolean) isFloodgatePlayer.invoke(api, player.getUniqueId());
             } catch (ReflectiveOperationException ex) {
-                Bukkit.getLogger().warning("Floodgate konnte nicht abgefragt werden, Bedrock-Check wird uebersprungen.");
+                Bukkit.getLogger().warning("Floodgate konnte nicht abgefragt werden, Bedrock-Check wird übersprungen.");
                 return false;
             }
         }
@@ -74,13 +74,13 @@ public class FloodgateHook {
         private static void showMainMenu(Player player, InventoryManager invManager) {
             org.geysermc.cumulus.form.SimpleForm.Builder form = org.geysermc.cumulus.form.SimpleForm.builder()
                     .title("Vorbau-System")
-                    .content("Waehle eine Aktion fuer deine Slots:");
+                    .content("Wähle eine Aktion für deine Slots:");
 
             for (int slot = 1; slot <= 3; slot++) {
                 if (invManager.hasWorld(player, slot)) {
                     form.button("§2[Slot " + slot + "] Teleport\n§7Betrete deine Welt");
                     form.button("§6[Slot " + slot + "] Umbenennen\n§7Name im Chat");
-                    form.button("§4[Slot " + slot + "] Loeschen\n§7Welt entfernen");
+                    form.button("§4[Slot " + slot + "] Löschen\n§7Welt entfernen");
                 } else {
                     form.button("§a[Slot " + slot + "] Erstellen\n§7Neue Welt");
                 }
@@ -92,7 +92,7 @@ public class FloodgateHook {
 
         private static void showTypeSelection(Player player, int slot, Main plugin) {
             org.geysermc.cumulus.form.SimpleForm.Builder form = org.geysermc.cumulus.form.SimpleForm.builder()
-                    .title("Welt-Typ waehlen (#" + slot + ")")
+                    .title("Welt-Typ wählen (#" + slot + ")")
                     .content("Welche Welt-Art?")
                     .button("§aFlat-Welt")
                     .button("§bVoid-Welt");
@@ -106,9 +106,9 @@ public class FloodgateHook {
 
         private static void showDeleteConfirm(Player player, int slot, InventoryManager invManager) {
             org.geysermc.cumulus.form.SimpleForm.Builder form = org.geysermc.cumulus.form.SimpleForm.builder()
-                    .title("§4Loeschen?")
-                    .content("Welt #" + slot + " wirklich loeschen?")
-                    .button("§cJA, LOESCHEN")
+                    .title("§4Löschen?")
+                    .content("Welt #" + slot + " wirklich löschen?")
+                    .button("§cJA, LÖSCHEN")
                     .button("§7Abbrechen");
 
             form.validResultHandler(res -> {
