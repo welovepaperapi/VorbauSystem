@@ -18,8 +18,10 @@ public class JoinListener implements Listener {
 
         plugin.getWorldManager().loadBuilderCache(player);
 
+		event.setJoinMessage("§8[§a+§8] §f" + player.getDisplayName());
+
         player.teleportAsync(plugin.getConfiguredSpawnLocation());
-        player.setGameMode(org.bukkit.GameMode.SURVIVAL);
+        player.setGameMode(org.bukkit.GameMode.ADVENTURE);
 
         player.sendMessage(" ");
         player.sendMessage(Main.PREFIX + "§7Willkommen auf §6GlowingParadise§7!");

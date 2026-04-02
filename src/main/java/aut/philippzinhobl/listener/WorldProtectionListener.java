@@ -109,9 +109,10 @@ public class WorldProtectionListener implements Listener {
         PermissionAttachment att = player.addAttachment(plugin);
         att.setPermission("fawe.permpack.basic", true);
         att.setPermission("fawe.voxelbrush", true);
-        att.setPermission("axiom.use", true);
+        att.setPermission("axiom.default", true);
         att.setPermission("headdb.open", true);
         att.setPermission("headdb.phead", true);
+        att.setPermission("minecraft.command.setworldspawn", true);
 
         attachments.put(player.getUniqueId(), att);
         player.sendMessage(Main.PREFIX + "§aBuilder-Tools für diese Welt aktiviert!");

@@ -104,7 +104,8 @@ public record WorldManager(Main plugin) {
         if (world != null) {
             player.teleport(world.getSpawnLocation());
             player.sendMessage(Main.PREFIX + "§aTeleportiert zu Welt #" + slot);
-        } else {
+			player.setGameMode(GameMode.CREATIVE);
+		} else {
             player.sendMessage(Main.PREFIX + "§cDiese Welt existiert nicht!");
         }
     }

@@ -1,9 +1,6 @@
 package aut.philippzinhobl;
 
-import aut.philippzinhobl.listener.ApplyListener;
-import aut.philippzinhobl.listener.JoinListener;
-import aut.philippzinhobl.listener.MenuListener;
-import aut.philippzinhobl.listener.WorldProtectionListener;
+import aut.philippzinhobl.listener.*;
 import aut.philippzinhobl.manager.ApplyManager;
 import aut.philippzinhobl.manager.DatabaseManager;
 import aut.philippzinhobl.manager.InventoryManager;
@@ -61,6 +58,7 @@ public final class Main extends JavaPlugin {
         var pm = getServer().getPluginManager();
         pm.registerEvents(new WorldProtectionListener(this), this);
         pm.registerEvents(new JoinListener(), this);
+		pm.registerEvents(new QuitListener(), this);
         pm.registerEvents(new MenuListener(this), this);
         pm.registerEvents(new ApplyListener(this), this);
 
@@ -73,7 +71,7 @@ public final class Main extends JavaPlugin {
                             .executes(context -> {
                                 if (context.getSource().getExecutor() instanceof Player player) {
                                     player.teleportAsync(getConfiguredSpawnLocation());
-                                    player.setGameMode(GameMode.SURVIVAL);
+                                    player.setGameMode(GameMode.ADVENTURE);
                                     player.sendMessage(PREFIX_COMP.append(Component.text("Du wurdest zum Spawn teleportiert.", NamedTextColor.GREEN)));
                                 }
                                 return 1;
